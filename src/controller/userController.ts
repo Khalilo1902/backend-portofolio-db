@@ -6,6 +6,17 @@ import { sendEmail } from "./sendEmail";
 import { jwtDecode } from "jwt-decode";
 import { IUser } from "../interface/user";
 
+// get all users
+
+const getAllusers = asyncHandler(async (req: Request, res: Response) => {
+  try {
+    const user = await User.find();
+    res.status(201).json({message:"user succesfull created",user:user})
+  } catch (error: any) {
+    res.json(error)
+  }
+});
+
 const userRegister = async (req: Request, res: Response) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 
@@ -57,7 +68,7 @@ const userLogin = asyncHandler(async (req: Request, res: Response) => {
   console.log(email);
   console.log(password);
   const userExist = await User.findOne({ email });
-  if (userExist && await userExist.isPasswordMatched(password)) {
+  if (userExist && (await userExist.isPasswordMatched(password))) {
     if (userExist.verifyToken) {
       const { _id: userId, firstName, lastName, email, isAdmin } = userExist;
       const accessToken = Jwt.sign(
@@ -147,4 +158,4 @@ const userLogout = asyncHandler(async (req: Request, res: Response) => {
   res.status(201).json({ message: "user logout successfull" });
 });
 
-export { userRegister, verifyAccount, userLogin, userLogout };
+export { userRegister, verifyAccount, userLogin, userLogout,getAllusers };

@@ -3,12 +3,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userLogout = exports.userLogin = exports.verifyAccount = exports.userRegister = void 0;
+exports.getAllusers = exports.userLogout = exports.userLogin = exports.verifyAccount = exports.userRegister = void 0;
 const userModel_1 = __importDefault(require("../models/userModel"));
 const express_async_handler_1 = __importDefault(require("express-async-handler"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const sendEmail_1 = require("./sendEmail");
 const jwt_decode_1 = require("jwt-decode");
+// get all users
+const getAllusers = (0, express_async_handler_1.default)(async (req, res) => {
+    try {
+        const user = await userModel_1.default.find();
+        res.status(201).json({ message: "user succesfull created", user: user });
+    }
+    catch (error) {
+        res.json(error);
+    }
+});
+exports.getAllusers = getAllusers;
 const userRegister = async (req, res) => {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
     const userExist = await userModel_1.default.findOne({ email });
@@ -50,7 +61,7 @@ const userLogin = (0, express_async_handler_1.default)(async (req, res) => {
     console.log(email);
     console.log(password);
     const userExist = await userModel_1.default.findOne({ email });
-    if (userExist && await userExist.isPasswordMatched(password)) {
+    if (userExist && (await userExist.isPasswordMatched(password))) {
         if (userExist.verifyToken) {
             const { _id: userId, firstName, lastName, email, isAdmin } = userExist;
             const accessToken = jsonwebtoken_1.default.sign({
