@@ -1,9 +1,9 @@
-### user Register
 ### get all user 
-GET http://localhost:3005/api/user/getalluser
+GET https://portofolio-db.khalil-dev.me/api/user/getalluser
 
 
 
+### user Register
 
 POST http://localhost:3005/api/user/register
 Content-Type: application/json
@@ -11,7 +11,7 @@ Content-Type: application/json
 {
   "firstName": "ali",
   "lastName": "haouas",
-  "email": "ali.haouas@gmail.com",
+  "email": "moh.haouas@gmail.com",
   "password": "123456",
   "confirmPassword": "123456"
 }
