@@ -5,5 +5,6 @@ export interface IUser {
     email: string;
     password: string;
     access_token: string;
-    verifyToken:boolean
+    verifyToken:boolean;
+    isPasswordMatched:Function
 }
