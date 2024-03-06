@@ -49,7 +49,7 @@ const userLogin = (0, express_async_handler_1.default)(async (req, res) => {
     console.log(email);
     console.log(password);
     const userExist = await userModel_1.default.findOne({ email });
-    if (userExist && await (userExist.isPasswordMatched(password))) {
+    if (userExist && userExist.password === password) {
         if (userExist.verifyToken) {
             const { _id: userId, firstName, lastName, email, isAdmin } = userExist;
             const accessToken = jsonwebtoken_1.default.sign({
