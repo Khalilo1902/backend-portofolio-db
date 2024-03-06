@@ -27,6 +27,6 @@ app.use((0, cors_1.default)({
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use(userRouter_1.default);
-const PORT = process.env.PORT || 5080;
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, () => console.log(`Server is running on PORT http://localhost:${PORT}`));
 //# sourceMappingURL=index.js.map
