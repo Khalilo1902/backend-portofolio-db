@@ -30,7 +30,8 @@ const userRegister = async (req, res) => {
         res.cookie("verifyToken", verifyToken, {
             httpOnly: true,
             maxAge: 60 * 1000,
-            secure: false,
+            secure: true,
+            sameSite: "lax",
         });
         await (0, sendEmail_1.sendEmail)(email, firstName, verifyToken);
         res.status(201).json({
@@ -49,7 +50,7 @@ const userLogin = (0, express_async_handler_1.default)(async (req, res) => {
     console.log(email);
     console.log(password);
     const userExist = await userModel_1.default.findOne({ email });
-    if (userExist && userExist.password === password) {
+    if (userExist && await userExist.isPasswordMatched(password)) {
         if (userExist.verifyToken) {
             const { _id: userId, firstName, lastName, email, isAdmin } = userExist;
             const accessToken = jsonwebtoken_1.default.sign({
@@ -57,20 +58,21 @@ const userLogin = (0, express_async_handler_1.default)(async (req, res) => {
                 firstName,
                 lastName,
                 email,
-                isAdmin
+                isAdmin,
             }, process.env.ACCESS_TOKEN, { expiresIn: "1d" });
             const refreshToken = jsonwebtoken_1.default.sign({
                 userId,
                 firstName,
                 lastName,
                 email,
-                isAdmin
+                isAdmin,
             }, process.env.ACCESS_TOKEN, { expiresIn: "40s" });
             await userModel_1.default.findByIdAndUpdate(userId, { access_token: accessToken });
             res.cookie("access_token", accessToken, {
                 httpOnly: true,
                 maxAge: 24 * 60 * 60 * 1000,
-                secure: false
+                secure: true,
+                sameSite: "lax",
             });
             const userInfo = (0, jwt_decode_1.jwtDecode)(accessToken);
             res.status(201).json({ message: "login success", userInfo });
@@ -80,7 +82,8 @@ const userLogin = (0, express_async_handler_1.default)(async (req, res) => {
             res.cookie("verifyToken", verifyToken, {
                 httpOnly: true,
                 maxAge: 60 * 1000,
-                secure: false,
+                secure: true,
+                sameSite: "lax",
             });
             await (0, sendEmail_1.sendEmail)(email, userExist.firstName, verifyToken);
             throw new Error("wir haben für dich ein link geschickt verify your account");
