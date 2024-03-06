@@ -8,32 +8,32 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const userSchema = new mongoose_1.default.Schema({
     firstName: {
         type: String,
-        required: true
+        required: true,
     },
     lastName: {
         type: String,
-        required: true
+        required: true,
     },
     email: {
         type: String,
-        required: true
+        required: true,
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
     isAdmin: {
-        type: Boolean
+        type: Boolean,
     },
     verifyToken: {
         type: Boolean,
-        default: false
+        default: false,
     },
     access_token: {
         type: String,
     },
 }, {
-    timestamps: true
+    timestamps: true,
 });
 // userSchema.set("toJSON", {
 //     transform: function (doc, ret) {
@@ -50,7 +50,7 @@ userSchema.pre("save", async function (next) {
     this.password = await bcrypt_1.default.hash(this.password, salt);
 });
 userSchema.methods.isPasswordMatched = async function (enteredPassword) {
-    return this.password = await bcrypt_1.default.compare(enteredPassword, this.password);
+    return await bcrypt_1.default.compare(enteredPassword, this.password);
 };
 exports.default = mongoose_1.default.model("User", userSchema);
 //# sourceMappingURL=userModel.js.map
