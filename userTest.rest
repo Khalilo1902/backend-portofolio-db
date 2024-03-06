@@ -1,5 +1,5 @@
 ### get all user 
-GET https://portofolio-db.khalil-dev.me/api/user/getalluser
+GET http://localhost:5008/api/user/getalluser
 
 
 
