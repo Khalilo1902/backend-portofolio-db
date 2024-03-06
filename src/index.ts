@@ -12,8 +12,17 @@ dotenv.config()
 dbConnect()
 
 const app = express()
-app.use(cors({credentials:true,origin:"https://khalil-dev.me"}))
-app.use(express.json())
+app.use(cors({
+    credentials: true,
+    origin: function (origin, callback) {
+      // Hier können Sie überprüfen, ob der Origin-Header akzeptiert werden soll
+      if (origin === 'https://khalil-dev.me') {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    }
+  }));app.use(express.json())
 app.use(cookieParser())
 
 app.use(userRouter)
