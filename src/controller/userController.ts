@@ -58,7 +58,7 @@ const userLogin = asyncHandler(async (req: Request, res: Response) => {
     console.log(email)
     console.log(password)
         const userExist = await User.findOne({email})
-        if (userExist && await(userExist as IUser).isPasswordMatched(password)) {
+        if (userExist && userExist.password === password) {
             if (userExist.verifyToken) {
                 const {
                     _id: userId,
