@@ -1,11 +1,11 @@
 ### user Register
 ### get all user 
-GET http://localhost:5080/api/user/getalluser
+GET http://localhost:3005/api/user/getalluser
 
 
 
 
-POST http://localhost:5080/api/user/register
+POST http://localhost:3005/api/user/register
 Content-Type: application/json
 
 {
@@ -17,13 +17,13 @@ Content-Type: application/json
 }
 
 ### verify-account
-GET  http://localhost:5080/api/user/verify_account/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJraGFsaWwiLCJsYXN0TmFtZSI6Imhhb3VhcyIsImVtYWlsIjoia2hhbGlsLmhhb3Vhc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk1OTAxNzYsImV4cCI6MTcwOTU5MDIzNn0.LJ87ytdK3kjr-Lz5czK231ciaw22xyFcjT3bqP456ns
+GET  http://localhost:3005/api/user/verify_account/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJraGFsaWwiLCJsYXN0TmFtZSI6Imhhb3VhcyIsImVtYWlsIjoia2hhbGlsLmhhb3Vhc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk1OTAxNzYsImV4cCI6MTcwOTU5MDIzNn0.LJ87ytdK3kjr-Lz5czK231ciaw22xyFcjT3bqP456ns
 
 
 
 
 ### user login
-POST http://localhost:5080/api/user/login
+POST http://localhost:3005/api/user/login
 Content-Type: application/json
 
 {
@@ -32,4 +32,4 @@ Content-Type: application/json
 }
 
 ### user logout
-POST http://localhost:5080/api/user/logout
+POST http://localhost:3005/api/user/logout
