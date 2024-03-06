@@ -1,4 +1,10 @@
 ### user Register
+### get all user 
+GET http://localhost:5080/api/user/getalluser
+
+
+
+
 POST http://localhost:5080/api/user/register
 Content-Type: application/json
 

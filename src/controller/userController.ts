@@ -8,7 +8,7 @@ import { IUser } from "../interface/user";
 
 // get all users
 
-const getAllusers = asyncHandler(async (req: Request, res: Response) => {
+const getAllUsers = asyncHandler(async (req: Request, res: Response) => {
   try {
     const user = await User.find();
     res.status(201).json({message:"user succesfull created",user:user})
@@ -158,4 +158,4 @@ const userLogout = asyncHandler(async (req: Request, res: Response) => {
   res.status(201).json({ message: "user logout successfull" });
 });
 
-export { userRegister, verifyAccount, userLogin, userLogout,getAllusers };
+export { userRegister, verifyAccount, userLogin, userLogout,getAllUsers };
