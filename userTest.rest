@@ -3,9 +3,9 @@ POST http://localhost:5080/api/user/register
 Content-Type: application/json
 
 {
-  "firstName": "khalil",
+  "firstName": "ali",
   "lastName": "haouas",
-  "email": "khalil.haouas@gmail.com",
+  "email": "ali.haouas@gmail.com",
   "password": "123456",
   "confirmPassword": "123456"
 }
