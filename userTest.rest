@@ -5,7 +5,7 @@ GET http://localhost:5008/api/user/getalluser
 
 ### user Register
 
-POST http://localhost:3005/api/user/register
+POST http://localhost:5008/api/user/register
 Content-Type: application/json
 
 {
@@ -33,3 +33,9 @@ Content-Type: application/json
 
 ### user logout
 POST http://localhost:3005/api/user/logout
+
+
+
+
+
+
