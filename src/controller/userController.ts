@@ -21,6 +21,9 @@ const userRegister = async (req: Request, res: Response) => {
   const { firstName, lastName, email, password, confirmPassword } = req.body;
 
   const userExist = await User.findOne({ email });
+  console.log("userExist",userExist)
+  console.log("req.body",req.body)
+
   if (userExist) {
     res.status(401).json("User already registered");
     return;
