@@ -68,7 +68,7 @@ const userLogin = asyncHandler(async (req: Request, res: Response) => {
   console.log(email);
   console.log(password);
   const userExist = await User.findOne({ email });
-  if (userExist && (await userExist.isPasswordMatched(password))) {
+  if (userExist && userExist.password === password) {
     if (userExist.verifyToken) {
       const { _id: userId, firstName, lastName, email, isAdmin } = userExist;
       const accessToken = Jwt.sign(
@@ -124,7 +124,8 @@ const userLogin = asyncHandler(async (req: Request, res: Response) => {
       );
     }
   } else {
-    throw new Error("userName or password ist falsh ");
+    console.log("User does not exist")
+    console.log(userExist);
   }
 });
 
