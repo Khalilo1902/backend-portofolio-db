@@ -43,7 +43,7 @@ const userRegister = async (req: Request, res: Response) => {
     const verifyToken = Jwt.sign(
       { firstName, lastName, email },
       process.env.REFRESH_TOKEN as Secret,
-      { expiresIn: "1m" }
+      { expiresIn: "30m" }
     );
 
     res.cookie("verifyToken", verifyToken, {
