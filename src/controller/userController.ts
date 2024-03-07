@@ -54,7 +54,7 @@ const userRegister = async (req: Request, res: Response) => {
     });
 
     await sendEmail(email, firstName, verifyToken);
-
+ 
     res.status(201).json({
       message: "You are successfully registered",
       verifyToken,
